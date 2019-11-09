@@ -1,0 +1,24 @@
+from selenium import webdriver
+
+#from selenium.webdriver.firefox.firefox_binary import FirefoxBinary
+
+driver = webdriver.Firefox(executable_path=r'C:\Users\eamiagr\Downloads\geckodriver-v0.24.0-win64\geckodriver.exe')
+
+driver.get('https://web.whatsapp.com/')
+
+name=input('Enter the Name of the user or group : ')
+msg=input('Enter the msg to be sent : ')
+count=int(input('Enter the count of msg to be sent : '))
+
+input('Enter anything after scanning QR code: ')
+
+user=driver.find_element_by_xpath('//span[@title = "{}"]'.format(name))
+#('hover _2UaNq _3mMX1')
+user.click()
+
+msg_box=driver.find_element_by_class_name('_3u328')
+
+for i in range(count):
+    msg_box.send_keys(msg)
+    button = driver.find_element_by_class_name('_3M-N-')
+    button.click()
